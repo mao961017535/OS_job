@@ -161,7 +161,7 @@ class myWindow(QtWidgets.QMainWindow):
         if self.flag != -1:
             return
         # 根据不同算法寻找合适的空闲结点
-        print(self.isbestFit)
+        # print(self.isbestFit)
         i = self.findBestNode(length) if self.isbestFit else self.findFirstNode(length)
         if i >= 0:
             # 该工作结点的number，在list中的位置最后将变为i
@@ -238,7 +238,7 @@ class myWindow(QtWidgets.QMainWindow):
             elif self.category == '进程调度':
                 show_info = str(node['length'])+'s'
             btn = QtWidgets.QPushButton(str(node['length'])+self.unit, self)
-            btn.setFont(QtGui.QFont('Microsoft YaHei', node['length']/42 + 5))
+            btn.setFont(QtGui.QFont('Microsoft YaHei', int(node['length'] / 42) + 5))
             btn.setGeometry(380, 30+node['start'], 100, node['length'])
             btn.setStyleSheet(
                 "QPushButton{color:rgb(150,150,150)}"
@@ -246,7 +246,7 @@ class myWindow(QtWidgets.QMainWindow):
                 "QPushButton{border: 1.5px solid rgb(66,66,66);}")
         else:       # 作业结点按钮
             btn = QtWidgets.QPushButton('P'+str(node['number'])+':\n'+str(node['length'])+self.unit, self)
-            btn.setFont(QtGui.QFont('Microsoft YaHei', node['length'] / 42 + 5))
+            btn.setFont(QtGui.QFont('Microsoft YaHei', int(node['length'] / 42) + 5))
             btn.setGeometry(380, 30 + node['start'], 100, node['length'])
             btn.setStyleSheet(
                 "QPushButton{color:rgb(1,0,0)}"
@@ -315,9 +315,9 @@ class myWindow(QtWidgets.QMainWindow):
                 sip.delete(self.nodeList[self.current]['btn'])
                 del self.nodeList[self.current]
                 sleep(0.025 / self.v)
-                print(self.v)
+                # print(self.v)
                 QtWidgets.QApplication.processEvents()
-                print(self.nodeList)
+                # print(self.nodeList)
             # and的短路机制
             if len(self.nodeList) > 1 and self.nodeList[self.current]['isnull']:
                 self.current -= 1
